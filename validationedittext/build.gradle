@@ -4,6 +4,31 @@ apply {
     plugin 'kotlin-android-extensions'
     plugin 'kotlin-kapt'
 }
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'validationedittext'
+
+    publishedGroupId = 'com.github.vitaliyptitsyn'
+    libraryName = 'ValidationEditText'
+    artifact = 'validationedittext'
+
+    libraryDescription = 'Edit text validation library using MVVM ( ViewModel + LiveData)'
+
+    siteUrl = 'https://github.com/VitaliyPtitsyn/validationedittext'
+    gitUrl = 'https://github.com/VitaliyPtitsyn/validationedittext.git'
+
+    libraryVersion = '0.8.0'
+
+    developerId = 'VitaliyPtitsyn'
+    developerName = 'Vitaliy Ptitsyn'
+    developerEmail = 'vitaliyptitsyn@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
 android {
     compileSdkVersion build_versions.compileSdkVersion
 
