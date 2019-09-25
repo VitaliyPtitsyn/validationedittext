@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.pvitaliy.validationtext.rules.ContentValidation" />
+
+        <import type="com.pvitaliy.validationedittextsample.ui.main.rule.PhoneCustomValidateRule" />
+
+        <import type="com.pvitaliy.validationedittextsample.ui.main.MainViewModel" />
+
+        <import type="com.pvitaliy.validationedittext.ErrorModeConstant" />
+
+        <variable
+            name="vm"
+            type="MainViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="16dp"
+            tools:context=".ui.main.MainFragment">
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:hint="@string/auth_hint_name">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_person"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPersonName"
+                    app:VET_show_error_mode="@{vm.liveShowOnEdit}"
+                    app:VET_validation_content="@{ContentValidation.NOT_EMPTY}"
+                    app:VET_validation_result="@={vm.liveName}"
+                    tools:text="18,6" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="8dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:hint="@string/auth_hint_email">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_count"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_gmail"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress"
+                    app:VET_show_error_mode="@{vm.liveShowOnEdit}"
+                    app:VET_validation_content="@{ContentValidation.EMAIL}"
+                    app:VET_validation_result="@={vm.liveEmail}"
+                    tools:text="18,6" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="8dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_lock"
+                    android:hint="@string/auth_hint_password"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    app:VET_show_error_mode="@{vm.liveShowOnEdit}"
+                    app:VET_validate_equal="@{etPasswordRepeat}"
+                    app:VET_validation_result="@={vm.livePassword}"
+                    tools:text="18,6" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="8dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_password_repeat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_password_repeat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_lock"
+                    android:hint="@string/auth_hint_password_repeat"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    app:VET_show_error_mode="@{vm.liveShowOnEdit}"
+                    app:VET_validate_equal="@{etPassword}"
+                    tools:text="18,6" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="8dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:hint="@string/auth_hint_phone">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_phone"
+                    android:imeOptions="actionDone"
+                    android:inputType="phone"
+                    app:VET_show_error_mode="@{ErrorModeConstant.OnUserInput}"
+                    app:VET_validationRules="@{vm.phoneValidationRules}"
+                    app:VET_validation_text="@={vm.livePhone}"
+                    tools:text="18,6" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="8dp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="180dp"
+                android:onClick="@{()->vm.singIn()}"
+                android:text="@string/btn_register" />
+        </LinearLayout>
+    </ScrollView>
+
+</layout>

@@ -1,0 +1,54 @@
+apply {
+    plugin 'com.android.application'
+    plugin 'kotlin-android'
+    plugin 'kotlin-android-extensions'
+    plugin 'kotlin-kapt'
+}
+
+android {
+    compileSdkVersion build_versions.compileSdkVersion
+    defaultConfig {
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode 1
+        versionName "0.8.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding { enabled = true }
+    testOptions { unitTests.returnDefaultValues = true }
+}
+
+androidExtensions {
+    experimental = true
+}
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':validationedittext')
+
+    implementation deps.kotlin.stdlib
+    implementation deps.google.material
+
+
+    implementation deps.support.annotations
+    implementation deps.support.core
+    implementation deps.support.app_compat
+    implementation deps.support.constraintlayout
+    implementation deps.support.constraintlayout
+
+    implementation deps.jetpack.lifecycle
+    implementation deps.jetpack.viewmodel
+    implementation deps.jetpack.livedata
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}

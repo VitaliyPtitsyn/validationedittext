@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">ValidationEditTextSample</string>
+
+    <string name="auth_hint_name">Name</string>
+    <string name="auth_hint_email">Email</string>
+    <string name="auth_hint_password">Password</string>
+    <string name="auth_hint_password_repeat">Repeat your password</string>
+    <string name="auth_hint_phone">Phone</string>
+    <string name="btn_register">sign_up</string>
+
+    <string name="custom_phone_error">Wrong number</string>
+
+    <!--    override the default message-->
+    <string name="VET_not_equal_text">Passwords do not match</string>
+
+</resources>

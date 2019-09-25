@@ -1,0 +1,2 @@
+include ':sample', ':validationedittext'
+rootProject.name='ValidationEditTextSample'
