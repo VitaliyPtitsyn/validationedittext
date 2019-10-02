@@ -18,6 +18,50 @@ See latest library version [ ![Download](https://api.bintray.com/packages/vitali
 implementation 'com.github.vitaliyptitsyn:validationedittext:X.X.X'
 ```
 
+### **Usage Sample**
+Usage of `PageIndicatorView` is quite simple. Just like regular data binding events.
+```xml
+     <data>
+            <import type="com.pvitaliy.validationtext.rules.ContentValidation" />
+        </data>
+
+        <com.google.android.material.textfield.TextInputEditText
+                  android:id="@+id/et_name"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:drawableStart="@drawable/ic_person"
+                  android:imeOptions="actionNext"
+                  android:inputType="textPersonName"
+                  app:VET_show_error_mode="@{vm.liveShowOnEdit}"
+                  app:VET_validation_content="@{ContentValidation.NOT_EMPTY}"
+                  app:VET_validation_result="@={vm.liveName}"
+                  tools:text="18,6" />
+```
+In binding `bm.liveName` live data with `ValidateResult` class 
+
+```kotlin
+data class ValidateResult(
+    val originalText: String,
+    val validatedText: String = "", // empty if text is invalid 
+    val isValid: Boolean = false
+)
+```
+To send text to validation exit text need to predefined "originalText" in ValidateResult classes instants, in you default Vm.
+
+In case when you want to use just text, you need use "VET_validation_text"  instead of "VET_validation_result"
+
+Also "VET_show_error_mode" used to control when to show validated text
+
+Name| Behavior
+---- | -------------- 
+`ErrorMode.None`| Do not show error reason on edit Text
+`ErrorMode.OnUserInput`| Show only on user focused view and typing
+`ErrorMode.Always`| always validate result (Event if you send value in runtime) 
+`ErrorMode.Once`| Most interested format. Validate text once, than set mode accordingly to `nextMode`
+
+
+
+
 ### **License**
 
     Copyright 2019 Vitaliy Ptitsyn
