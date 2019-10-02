@@ -8,7 +8,7 @@
     <string name="auth_hint_phone">Phone</string>
     <string name="btn_register">sign_up</string>
 
-    <string name="custom_phone_error">Wrong number</string>
+    <string name="custom_phone_error">Wrong number format</string>
 
     <!--    override the default message-->
     <string name="VET_not_equal_text">Passwords do not match</string>

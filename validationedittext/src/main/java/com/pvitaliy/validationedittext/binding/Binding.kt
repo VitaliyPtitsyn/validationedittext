@@ -10,25 +10,40 @@ import androidx.databinding.InverseBindingListener
 import com.pvitaliy.validationedittext.ErrorMode
 import com.pvitaliy.validationedittext.ErrorModeConstant
 import com.pvitaliy.validationedittext.R
+import com.pvitaliy.validationedittext.mapper.ValidationConvector
+import com.pvitaliy.validationedittext.mapper.ValidationConvectorDefault
 import com.pvitaliy.validationtext.OnValidation
 import com.pvitaliy.validationtext.ValidateResult
 import com.pvitaliy.validationtext.rules.*
 
 @BindingAdapter(
-    value = ["VET_validation_result", "VET_validationRules"],
+    value = ["VET_validation_result", "VET_validation_converter", "VET_validationRules"],
     requireAll = false
 )
-fun EditText.setValidation(validateResult: ValidateResult?, rules: List<ValidationRule>?) {
-    setValidator(validateResult, rules)
+fun EditText.setValidation(
+    validateResult: ValidateResult?,
+    convector: ValidationConvector?,
+    rules: List<ValidationRule>?
+) {
+    setValidator(convector ?: ValidationConvectorDefault(), rules, validateResult)
 }
 
 @BindingAdapter(
-    value = ["VET_validation_text", "VET_validationRules"],
+    value = ["VET_validation_text", "VET_validation_converter", "VET_validationRules"],
     requireAll = false
 )
-fun EditText.setValidation(text: String?, rules: List<ValidationRule>?) {
-    setValidator(ValidateResult(text ?: ""), rules)
+fun EditText.setValidation(
+    text: String?,
+    convector: ValidationConvector?,
+    rules: List<ValidationRule>?
+) {
+    setValidator(
+        convector ?: ValidationConvectorDefault(),
+        rules,
+        ValidateResult(text ?: "")
+    )
 }
+
 
 @InverseBindingAdapter(attribute = "VET_validation_result", event = "VET_texAttributeChange")
 fun EditText.getResult(): ValidateResult {

@@ -2,11 +2,19 @@ package com.pvitaliy.validationtext
 
 import androidx.annotation.StringRes
 
-/**
- * throw when validation failed. Than Text validation will catch and havlde the reason
- * String reason has a priority, but if both will be null. "Invalid" wil be shown
- */
-open class ValidationException(
-    var reason: String? = null,
-    @StringRes var reasonId: Int? = null
-) : Exception()
+
+abstract class ValidationException : Exception()
+
+
+open class ErrorCodeException(
+    open val errorCode: Int,
+    open vararg val args: Any?
+) : ValidationException()
+
+
+open class StringException(val reason: String) : ValidationException()
+
+open class ResException(
+    @StringRes val resoruceString: Int,
+    vararg val args: Any?
+) : ValidationException()

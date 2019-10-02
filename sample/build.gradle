@@ -11,7 +11,7 @@ android {
         minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
         versionCode 1
-        versionName "0.8.0"
+        versionName "0.9.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -28,7 +28,6 @@ android {
 androidExtensions {
     experimental = true
 }
-
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])

@@ -1,8 +1,9 @@
 package com.pvitaliy.validationtext.rules
 
 import android.content.res.Resources
-import com.pvitaliy.validationedittext.R
-import com.pvitaliy.validationtext.ValidationException
+import com.pvitaliy.validationedittext.rules.ErrorCodes.ERROR_CODE_TEXT_MAX
+import com.pvitaliy.validationedittext.rules.ErrorCodes.ERROR_CODE_TEXT_MIN
+import com.pvitaliy.validationtext.ErrorCodeException
 
 data class ValidationLengthRule(val min: Int?, val max: Int?) : ValidationRule {
 
@@ -10,16 +11,14 @@ data class ValidationLengthRule(val min: Int?, val max: Int?) : ValidationRule {
         val finalText = text ?: ""
         min?.let {
             if (finalText.length < it) throw
-            LengthException(res.getString(R.string.VET_wrong_min_format, it))
+            ErrorCodeException(ERROR_CODE_TEXT_MIN, it)
         }
         max?.let {
             if (finalText.length > it) throw
-            LengthException(res.getString(R.string.VET_wrong_max_format, it))
+            ErrorCodeException(ERROR_CODE_TEXT_MAX, it)
         }
     }
 
     override fun equals(other: Any?): Boolean = other is ValidationLengthRule
     override fun hashCode(): Int = javaClass.hashCode()
 }
-
-class LengthException(reason: String) : ValidationException(reason = reason)

@@ -2,8 +2,8 @@ package com.pvitaliy.validationtext.rules
 
 import android.content.res.Resources
 import android.text.TextUtils
-import com.pvitaliy.validationedittext.R
-import com.pvitaliy.validationtext.ValidationException
+import com.pvitaliy.validationedittext.rules.ErrorCodes.ERROR_CODE_EMPTY
+import com.pvitaliy.validationtext.ErrorCodeException
 
 class ValidationEmptyRule : ValidationRule {
 
@@ -16,4 +16,4 @@ class ValidationEmptyRule : ValidationRule {
 
 }
 
-class EmptyException : ValidationException(reasonId = R.string.VET_cant_be_empty)
+class EmptyException : ErrorCodeException(ERROR_CODE_EMPTY)

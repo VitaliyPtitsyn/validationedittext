@@ -3,7 +3,6 @@ apply {
     plugin 'kotlin-android'
     plugin 'kotlin-android-extensions'
     plugin 'kotlin-kapt'
-    plugin 'com.jfrog.bintray'
 }
 
 ext {
@@ -11,16 +10,18 @@ ext {
     bintrayName = 'validationedittext' //name at Bintray
     libraryName = 'validationedittext' //module name in project
 
-    publishedGroupId = 'com.vitaliyptitsyn' //The ID
+    publishedGroupId = 'com.github.vitaliyptitsyn' //The ID
     artifact = 'validationedittext'  //artifact
-    libraryVersion = '0.8.0' //version
+    libraryVersion = '0.8.2' //version
+
+    developerId = 'vptitsyn'
+    developerName = 'Vitaliy Ptitsyn'
+    developerEmail = 'vitaliyptitsyn@gmail.com'
 
     libraryDescription = 'Edit text validation library using MVVM ( ViewModel + LiveData)'
     siteUrl = 'https://github.com/VitaliyPtitsyn/validationedittext'
     gitUrl = 'https://github.com/VitaliyPtitsyn/validationedittext.git'
-    developerId = 'VitaliyPtitsyn'
-    developerName = 'Vitaliy Ptitsyn'
-    developerEmail = 'vitaliyptitsyn@gmail.com'
+
 
     licenseName = 'The Apache Software License, Version 2.0'
     licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
@@ -67,13 +68,7 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
-
-allprojects {
-    tasks.withType(Javadoc) {
-        options.addStringOption('Xdoclint:none', '-quiet')
-        options.addStringOption('encoding', 'UTF-8')
-    }
-
+if (project.rootProject.file('local.properties').exists()) {
     apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
     apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
 }

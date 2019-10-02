@@ -9,9 +9,11 @@ buildscript {
         classpath deps.kotlin.plugin
 
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
     }
 }
+apply plugin: 'com.jfrog.bintray'
+
 
 allprojects {
     addRepos(repositories)
@@ -25,3 +27,4 @@ task clean(type: Delete) {
 subprojects {
     tasks.withType(Javadoc).all { enabled = false }
 }
+

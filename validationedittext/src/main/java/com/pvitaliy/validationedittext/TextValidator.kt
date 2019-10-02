@@ -4,7 +4,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
 import com.pvitaliy.validationedittext.ErrorMode
-import com.pvitaliy.validationedittext.R
+import com.pvitaliy.validationedittext.mapper.ValidationConvector
 import com.pvitaliy.validationtext.rules.ValidationRule
 import java.lang.ref.WeakReference
 import java.util.concurrent.CopyOnWriteArraySet
@@ -12,7 +12,14 @@ import java.util.concurrent.CopyOnWriteArraySet
 class TextValidator : TextWatcher {
 
 
-    constructor(editText: EditText, mode: ErrorMode = ErrorMode.None) {
+    var validationConvector: ValidationConvector
+
+    constructor(
+        editText: EditText,
+        validationConvector: ValidationConvector,
+        mode: ErrorMode = ErrorMode.None
+    ) {
+        this.validationConvector = validationConvector
         editTextWeek = WeakReference(editText)
         editText.addTextChangedListener(this)
         this.errorMode = mode
@@ -50,17 +57,18 @@ class TextValidator : TextWatcher {
 
     fun validateInput(editText: EditText, showError: Boolean = false) {
         editText.error = null
+        val resources = editText.context.resources
         val text = editText.text?.toString() ?: ""
         var isValidText = true
+
         rules.forEach { rule ->
             try {
                 rule.validate(text, editText.resources)
             } catch (e: ValidationException) {
                 isValidText = false
                 if (!showError) return@forEach
-                editText.error = if (e.reason != null) e.reason
-                else editText.context.getString(e.reasonId ?: R.string.VET_invalid_input)
 
+                editText.error = validationConvector.convertError(resources, e)
             }
         }
 
@@ -85,6 +93,7 @@ class TextValidator : TextWatcher {
     fun putRule(rule: ValidationRule?) {
         if (rule != null) rules.add(rule)
     }
+
 }
 
 interface OnValidation {

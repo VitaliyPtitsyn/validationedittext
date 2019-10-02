@@ -4,5 +4,5 @@
     <string name="VET_wrong_email_format">Wrong email format</string>
     <string name="VET_wrong_min_format">Less than %d</string>
     <string name="VET_wrong_max_format">More than %d</string>
-    <string name="VET_not_equal_text">Texts aren`t the same</string>
+    <string name="VET_not_equal_text">Texts aren\'t the same</string>
 </resources>
