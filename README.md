@@ -1,5 +1,23 @@
-### **Release Note**
-Instruction  will be here ASAP
+### **ValidationEditText**[ ![Download](https://api.bintray.com/packages/vitaliyptitsyn/maven/validationedittext/images/download.svg) ](https://bintray.com/vitaliyptitsyn/maven/validationedittext/_latestVersion)
+It`s a simple library to validate edit text with MVVM+data binding in wast and esasy solution.
+That is not a custom view. Its just a bindingAdapter with instrumental classes to make validation.
+
+### **Integration**
+To add `ValidationEditText` to your project, first make sure in root `build.gradle` you have specified the following repository:
+```groovy
+    repositories {
+        jcenter()
+    }
+```
+>***Note***: by creating new project in Android Studio it will have `jcenter` repository specified by default, so you will not need to add it manually.
+
+Once you make sure you have `jcenter` repository in your project, all you need to do is to add the following line in `dependencies` section of your project `build.gradle`.
+ 
+See latest library version [ ![Download](https://api.bintray.com/packages/vitaliyptitsyn/maven/validationedittext/images/download.svg) ](https://bintray.com/vitaliyptitsyn/maven/validationedittext/_latestVersion)
+```groovy
+implementation 'com.github.vitaliyptitsyn:validationedittext:X.X.X'
+```
+
 ### **License**
 
     Copyright 2019 Vitaliy Ptitsyn
