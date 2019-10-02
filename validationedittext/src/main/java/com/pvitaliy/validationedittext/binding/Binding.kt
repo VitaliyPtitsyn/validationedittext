@@ -37,13 +37,15 @@ fun EditText.setValidation(
 fun EditText.setValidation(
     text: String?,
     convector: ValidationConvector?,
-    rules: List<ValidationRule>
+    rules: List<ValidationRule>?
 ) {
-    setValidator(
-        convector ?: ValidationConvectorDefault(),
-        rules,
-        ValidateResult(text ?: "")
-    )
+    rules?.let {
+        setValidator(
+            convector ?: ValidationConvectorDefault(),
+            rules,
+            ValidateResult(text ?: "")
+        )
+    }
 }
 
 
