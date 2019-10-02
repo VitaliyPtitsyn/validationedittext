@@ -7,18 +7,18 @@ import com.pvitaliy.validationtext.ErrorCodeException
 
 data class ValidationLengthRule(val min: Int?, val max: Int?) : ValidationRule {
 
-    override fun validate(text: String?, res: Resources) {
-        val finalText = text ?: ""
+    override fun validate(text: String, res: Resources) {
         min?.let {
-            if (finalText.length < it) throw
+            if (text.length < it) throw
             ErrorCodeException(ERROR_CODE_TEXT_MIN, it)
         }
         max?.let {
-            if (finalText.length > it) throw
+            if (text.length > it) throw
             ErrorCodeException(ERROR_CODE_TEXT_MAX, it)
         }
     }
 
     override fun equals(other: Any?): Boolean = other is ValidationLengthRule
+
     override fun hashCode(): Int = javaClass.hashCode()
 }

@@ -7,10 +7,12 @@ import com.pvitaliy.validationtext.ResException
 import com.pvitaliy.validationtext.rules.ValidationRule
 
 class PhoneCustomValidateRule : ValidationRule {
-    override fun validate(text: String?, res: Resources) {
+
+    override fun validate(text: String, res: Resources) {
         if (!Patterns.PHONE.matcher(text).matches()) throw ResException(R.string.custom_phone_error)
     }
 
     override fun equals(other: Any?): Boolean = other is PhoneCustomValidateRule
+
     override fun hashCode(): Int = javaClass.hashCode()
 }
