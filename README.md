@@ -1,8 +1,8 @@
-### **ValidationEditText**[ ![Download](https://api.bintray.com/packages/vitaliyptitsyn/maven/validationedittext/images/download.svg) ](https://bintray.com/vitaliyptitsyn/maven/validationedittext/_latestVersion)
+## **ValidationEditText**[ ![Download](https://api.bintray.com/packages/vitaliyptitsyn/maven/validationedittext/images/download.svg) ](https://bintray.com/vitaliyptitsyn/maven/validationedittext/_latestVersion)
 It`s a simple library to validate edit text with MVVM+data binding in wast and esasy solution.
 That is not a custom view. Its just a bindingAdapter with instrumental classes to make validation.
 
-### **Integration**
+## **Integration**
 To add `ValidationEditText` to your project, first make sure in root `build.gradle` you have specified the following repository:
 ```groovy
     repositories {
@@ -18,7 +18,7 @@ See latest library version [ ![Download](https://api.bintray.com/packages/vitali
 implementation 'com.github.vitaliyptitsyn:validationedittext:X.X.X'
 ```
 
-#### **Usage Sample**
+## **Usage Sample**
 Usage of `PageIndicatorView` is quite simple. Just like regular data binding events.
 ```xml
      <data>
@@ -59,7 +59,7 @@ Name| Behavior
 `ErrorMode.Always`| always validate result (Event if you send value in runtime).
 `ErrorMode.Once`| Most interested format. Validate text once, than set mode accordingly to `nextMode` field.
 
-# **Customize error  and message**
+#### **Customize error  and message**
 To make you own validation Rule need to implement `ValidationRule` and in validate func throw `ValidationException` when the validation failed.
 Than ValidationConvector handle the error and show on the `EditText`.
 ValidationException  has 3 child classes.  
@@ -70,7 +70,6 @@ open class ErrorCodeException(
     open vararg val args: Any?
 ) : ValidationException()
 
-
 open class StringException(val reason: String) : ValidationException()
 
 open class ResException(
@@ -79,9 +78,15 @@ open class ResException(
 ) : ValidationException()
 ```
  To override error message.  Provide custom `ValidationConvector` by "VET_validation_converter"
- 
- 
+ #### **Rules**
+To provide rules to validator, you  can use   "VET_validationRules"  ( to provide list of rules) or use some of default rules 
 
+ 
+Name| Behavior
+---- | -------------- 
+`VET_validation_content`|Validate Email or Not Empty
+`VET_validation_min VET_validation_max`| Validate min and max Length
+`VET_validation_rule`| provide TextView to compare text
 
 
 
