@@ -38,7 +38,7 @@ open class ValidationConvectorDefault : ValidationConvector {
     override fun convertError(resources: Resources, exc: ValidationException): String =
         when (exc) {
             is ErrorCodeException -> getFromMap(resources, exc.errorCode, exc.args)
-            is ResException -> resources.getString(exc.resoruceString, exc.args)
+            is ResException -> resources.getString(exc.resString, exc.args)
             is StringException -> exc.reason
             else -> getFromMap(resources, ERROR_CODE_SGW)
         }

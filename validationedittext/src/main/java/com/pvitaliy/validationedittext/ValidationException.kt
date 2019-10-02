@@ -15,6 +15,6 @@ open class ErrorCodeException(
 open class StringException(val reason: String) : ValidationException()
 
 open class ResException(
-    @StringRes val resoruceString: Int,
+    @StringRes val resString: Int,
     vararg val args: Any?
 ) : ValidationException()

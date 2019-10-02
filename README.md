@@ -18,7 +18,7 @@ See latest library version [ ![Download](https://api.bintray.com/packages/vitali
 implementation 'com.github.vitaliyptitsyn:validationedittext:X.X.X'
 ```
 
-### **Usage Sample**
+#### **Usage Sample**
 Usage of `PageIndicatorView` is quite simple. Just like regular data binding events.
 ```xml
      <data>
@@ -54,10 +54,33 @@ Also "VET_show_error_mode" used to control when to show validated text
 
 Name| Behavior
 ---- | -------------- 
-`ErrorMode.None`| Do not show error reason on edit Text
-`ErrorMode.OnUserInput`| Show only on user focused view and typing
-`ErrorMode.Always`| always validate result (Event if you send value in runtime) 
-`ErrorMode.Once`| Most interested format. Validate text once, than set mode accordingly to `nextMode`
+`ErrorMode.None`| Do not show error reason on edit Text.
+`ErrorMode.OnUserInput`| Show only on user focused view and typing.
+`ErrorMode.Always`| always validate result (Event if you send value in runtime).
+`ErrorMode.Once`| Most interested format. Validate text once, than set mode accordingly to `nextMode` field.
+
+# **Customize error  and message**
+To make you own validation Rule need to implement `ValidationRule` and in validate func throw `ValidationException` when the validation failed.
+Than ValidationConvector handle the error and show on the `EditText`.
+ValidationException  has 3 child classes.  
+In custom validation rules, moust useful thor ResException or StringException
+```kotlin
+open class ErrorCodeException(
+    open val errorCode: Int,
+    open vararg val args: Any?
+) : ValidationException()
+
+
+open class StringException(val reason: String) : ValidationException()
+
+open class ResException(
+    @StringRes val resString: Int,
+    vararg val args: Any?
+) : ValidationException()
+```
+ To override error message.  Provide custom `ValidationConvector` by "VET_validation_converter"
+ 
+ 
 
 
 
