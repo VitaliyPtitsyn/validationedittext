@@ -91,7 +91,7 @@ fun EditText.setMode(mode: ErrorModeConstant) {
     validator.validateInput()
 }
 
-@BindingAdapter(value = ["VET_validation_min", "VET_validation_max"], requireAll = false)
+@BindingAdapter(value = ["VET_validation_length_min", "VET_validation_length_max"], requireAll = false)
 fun EditText.setValidtionLength(min: Int?, max: Int?) {
     val validator = getOrCreateValidator()
     validator.putRule(ValidationLengthRule(min, max))

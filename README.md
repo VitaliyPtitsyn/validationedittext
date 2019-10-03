@@ -85,7 +85,7 @@ To provide rules to validator, you  can use   "VET_validationRules"  ( to provid
 Name| Behavior
 ---- | -------------- 
 `VET_validation_content`|Validate Email or Not Empty
-`VET_validation_min VET_validation_max`| Validate min and max Length
+`VET_validation_length_min VET_validation_length_max`| Validate min and max Length
 `VET_validation_rule`| provide TextView to compare text
 
 

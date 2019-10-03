@@ -30,7 +30,6 @@ deps.kotlin = kotlin
 
 def support = [:]
 def support_version = '1.0.0'
-def support_version_material = '1.0.0-rc01'
 
 support.annotations = "androidx.annotation:annotation:$support_version"
 support.core = "androidx.core:core-ktx:1.1.0"

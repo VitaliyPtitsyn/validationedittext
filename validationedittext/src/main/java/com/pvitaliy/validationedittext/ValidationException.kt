@@ -6,7 +6,7 @@ abstract class ValidationException : Exception()
 
 open class ErrorCodeException(
     open val errorCode: Int,
-    open vararg val args: Any?
+    vararg val args: Any?
 ) : ValidationException()
 
 

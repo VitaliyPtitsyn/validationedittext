@@ -37,16 +37,19 @@ open class ValidationConvectorDefault : ValidationConvector {
 
     override fun convertError(resources: Resources, exc: ValidationException): String =
         when (exc) {
-            is ErrorCodeException -> getFromMap(resources, exc.errorCode, exc.args)
+            is ErrorCodeException -> {
+                val args = exc.args
+                getFromMap(resources, exc.errorCode, *args)
+            }
             is ResException -> resources.getString(exc.resString, exc.args)
             is StringException -> exc.reason
             else -> getFromMap(resources, ERROR_CODE_SGW)
         }
 
 
-    protected fun getFromMap(resources: Resources, errorCode: Int, vararg args: Any): String {
+    protected fun getFromMap(resources: Resources, errorCode: Int, vararg args: Any?): String {
         if (!codeMap.containsKey(errorCode))
             throw RuntimeException("Error code $errorCode has been forgotten to the codeMap")
-        return resources.getString(codeMap[errorCode]!!, args)
+        return resources.getString(codeMap[errorCode]!!, *args)
     }
 }
