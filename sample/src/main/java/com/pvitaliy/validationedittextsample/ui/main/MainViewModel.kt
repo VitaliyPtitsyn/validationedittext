@@ -11,7 +11,7 @@ class MainViewModel : ViewModel() {
     val livePhone = MutableLiveData<String>()
     val phoneValidationRules = listOf(PhoneCustomValidateRule())
 
-    val liveName = MutableLiveData<ValidateResult>()
+    val liveName = MutableLiveData<ValidateResult>(ValidateResult("Name"))
     val liveEmail = MutableLiveData<ValidateResult>()
     val livePassword = MutableLiveData<ValidateResult>()
 

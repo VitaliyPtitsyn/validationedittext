@@ -35,6 +35,7 @@ dependencies {
 
     implementation deps.kotlin.stdlib
     implementation deps.google.material
+//    implementation 'com.github.vitaliyptitsyn:validationedittext:0.9.1'
 
 
     implementation deps.support.annotations

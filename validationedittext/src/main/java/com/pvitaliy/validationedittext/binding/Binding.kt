@@ -25,9 +25,8 @@ fun EditText.setValidation(
     convector: ValidationConvector?,
     rules: List<ValidationRule>?
 ) {
-    rules?.let {
         setValidator(convector ?: ValidationConvectorDefault(), rules, validateResult)
-    }
+
 }
 
 @BindingAdapter(
@@ -39,13 +38,12 @@ fun EditText.setValidation(
     convector: ValidationConvector?,
     rules: List<ValidationRule>?
 ) {
-    rules?.let {
         setValidator(
             convector ?: ValidationConvectorDefault(),
             rules,
             ValidateResult(text ?: "")
         )
-    }
+
 }
 
 

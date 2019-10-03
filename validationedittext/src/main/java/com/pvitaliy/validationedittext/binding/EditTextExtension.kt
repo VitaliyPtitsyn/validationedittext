@@ -12,11 +12,11 @@ import com.pvitaliy.validationtext.rules.ValidationRule
 
 fun EditText.setValidator(
     convector: ValidationConvector,
-    rules: List<ValidationRule>,
+    rules: List<ValidationRule>?,
     validateResult: ValidateResult?
 ) {
     val validator = getOrCreateValidator()
-    validator.setRules(rules)
+    rules?.let { validator.setRules(rules) }
     validator.validationConvector = convector
 
     if (!TextUtils.equals(text, validateResult?.originalText))
