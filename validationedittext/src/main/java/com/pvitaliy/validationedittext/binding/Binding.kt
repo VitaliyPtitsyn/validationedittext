@@ -25,7 +25,9 @@ fun EditText.setValidation(
     convector: ValidationConvector?,
     rules: List<ValidationRule>?
 ) {
-    setValidator(convector ?: ValidationConvectorDefault(), rules, validateResult)
+    rules?.let {
+        setValidator(convector ?: ValidationConvectorDefault(), rules, validateResult)
+    }
 }
 
 @BindingAdapter(
@@ -37,11 +39,13 @@ fun EditText.setValidation(
     convector: ValidationConvector?,
     rules: List<ValidationRule>?
 ) {
-    setValidator(
-        convector ?: ValidationConvectorDefault(),
-        rules,
-        ValidateResult(text ?: "")
-    )
+    rules?.let {
+        setValidator(
+            convector ?: ValidationConvectorDefault(),
+            rules,
+            ValidateResult(text ?: "")
+        )
+    }
 }
 
 
@@ -96,13 +100,12 @@ fun EditText.setValidtionLength(min: Int?, max: Int?) {
 }
 
 @BindingAdapter("VET_validation_content")
-fun EditText.setValidationContent(contentValidation: ContentValidation?) {
+fun EditText.setValidationContent(contentValidation: ContentValidation) {
     val validator = getOrCreateValidator()
     validator.putRule(
         when (contentValidation) {
             ContentValidation.EMAIL -> ValidationEmailRule()
             ContentValidation.NOT_EMPTY -> ValidationEmptyRule()
-            null -> null
         }
     )
 }
