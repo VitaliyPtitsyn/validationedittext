@@ -2,9 +2,7 @@ package com.pvitaliy.validationtext
 
 import androidx.annotation.StringRes
 
-
 abstract class ValidationException : Exception()
-
 
 open class ErrorCodeException(
     open val errorCode: Int,

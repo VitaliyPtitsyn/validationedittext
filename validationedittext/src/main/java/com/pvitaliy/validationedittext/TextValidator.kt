@@ -9,37 +9,29 @@ import com.pvitaliy.validationtext.rules.ValidationRule
 import java.lang.ref.WeakReference
 import java.util.concurrent.CopyOnWriteArraySet
 
-class TextValidator : TextWatcher {
+class TextValidator(
+    editText: EditText,
+    var validationConvector: ValidationConvector,
+    mode: ErrorMode = ErrorMode.None
+) : TextWatcher {
 
-
-    var validationConvector: ValidationConvector
-
-    constructor(
-        editText: EditText,
-        validationConvector: ValidationConvector,
-        mode: ErrorMode = ErrorMode.None
-    ) {
-        this.validationConvector = validationConvector
-        editTextWeek = WeakReference(editText)
-        editText.addTextChangedListener(this)
-        this.errorMode = mode
-        validateInput(editText, mode == ErrorMode.Always)
-    }
-
-    private val editTextWeek: WeakReference<EditText>
+    private val editTextWeek: WeakReference<EditText> = WeakReference(editText)
     private val rules = CopyOnWriteArraySet<ValidationRule>()
 
     lateinit var validationResult: ValidateResult
 
     var callback: OnValidation? = null
-    var errorMode: ErrorMode = ErrorMode.None
+    var errorMode: ErrorMode = mode
 
 
-    fun setRules(validationRules: List<ValidationRule>?) {
-        if (validationRules != null) {
-            rules.clear()
-            rules.addAll(validationRules)
-        }
+    init {
+        editText.addTextChangedListener(this)
+        validateInput(editText, mode == ErrorMode.Always)
+    }
+
+    fun setRules(validationRules: List<ValidationRule>) {
+        rules.clear()
+        rules.addAll(validationRules)
     }
 
     fun validateInput() {
@@ -58,7 +50,7 @@ class TextValidator : TextWatcher {
     fun validateInput(editText: EditText, showError: Boolean = false) {
         editText.error = null
         val resources = editText.context.resources
-        val text = editText.text?.toString() ?: ""
+        val text = editText.text.toString()
         var isValidText = true
 
         rules.forEach { rule ->
@@ -80,20 +72,19 @@ class TextValidator : TextWatcher {
         callback?.onValidation(validationResult)
     }
 
-    override fun afterTextChanged(s: Editable?) {
+    override fun afterTextChanged(s: Editable) {
         validateInput()
     }
 
-    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+    override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
     }
 
-    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+    override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
     }
 
-    fun putRule(rule: ValidationRule?) {
-        if (rule != null) rules.add(rule)
+    fun putRule(rule: ValidationRule) {
+        rules.add(rule)
     }
-
 }
 
 interface OnValidation {

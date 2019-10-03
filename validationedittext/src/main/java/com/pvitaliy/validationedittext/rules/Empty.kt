@@ -7,13 +7,13 @@ import com.pvitaliy.validationtext.ErrorCodeException
 
 class ValidationEmptyRule : ValidationRule {
 
-    override fun validate(text: String?, res: Resources) {
+    override fun validate(text: String, res: Resources) {
         if (TextUtils.isEmpty(text)) throw EmptyException()
     }
 
     override fun equals(other: Any?): Boolean = other is ValidationEmailRule
-    override fun hashCode(): Int = javaClass.hashCode()
 
+    override fun hashCode(): Int = javaClass.hashCode()
 }
 
 class EmptyException : ErrorCodeException(ERROR_CODE_EMPTY)

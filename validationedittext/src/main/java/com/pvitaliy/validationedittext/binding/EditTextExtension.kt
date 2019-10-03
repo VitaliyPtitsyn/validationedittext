@@ -12,7 +12,7 @@ import com.pvitaliy.validationtext.rules.ValidationRule
 
 fun EditText.setValidator(
     convector: ValidationConvector,
-    rules: List<ValidationRule>?,
+    rules: List<ValidationRule>,
     validateResult: ValidateResult?
 ) {
     val validator = getOrCreateValidator()
