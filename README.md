@@ -10,9 +10,9 @@ To add `ValidationEditText` to your project, first make sure in root `build.grad
         jcenter()
     }
 ```
->***Note***: by creating new project in Android Studio it will have `jcenter` repository specified by default, so you will not need to add it manually.
+>***Note***: by creating new project in Android Studio it will have `jcenter` repository specified by default, so you don\'t not need to add it manually.
 Once you make sure you have `jcenter` repository in your project, all you need to do is to add the following line in `dependencies` section of your project `build.gradle`.
-See latest library version [ ![Download](https://api.bintray.com/packages/vitaliyptitsyn/maven/validationedittext/images/download.svg) ](https://bintray.com/vitaliyptitsyn/maven/validationedittext/_latestVersion)
+See the latest library version [ ![Download](https://api.bintray.com/packages/vitaliyptitsyn/maven/validationedittext/images/download.svg) ](https://bintray.com/vitaliyptitsyn/maven/validationedittext/_latestVersion)
 ```groovy
 implementation 'com.github.vitaliyptitsyn:validationedittext:X.X.X'
 ```
@@ -37,7 +37,6 @@ There is 2 ways to provide rules:
     To provide the list `VET_validationRules` that accepts `List<ValidationRule>` (List of validator may dynamic)
     Or Use list attributes for common validator. You can combine them in any way. (Validators from the xml)
     
-    sample
 ```xml
         <data>
             <import type="com.pvitaliy.validationtext.rules.ContentValidation" />
