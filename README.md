@@ -1,6 +1,7 @@
 ## **ValidationEditText**[ ![Download](https://api.bintray.com/packages/vitaliyptitsyn/maven/validationedittext/images/download.svg) ](https://bintray.com/vitaliyptitsyn/maven/validationedittext/_latestVersion)
-It`s a simple library to validate edit text with MVVM+data binding in wast and esasy solution.
-That is not a custom view. Its just a bindingAdapter with instrumental classes to make validation.
+This is a simple library that facilitates the text validation and error handling in user-friendly way
+on EditText with (TextInputLayout support).
+For MVVM + data binding stack
 
 ## **Integration**
 To add `ValidationEditText` to your project, first make sure in root `build.gradle` you have specified the following repository:
@@ -10,50 +11,59 @@ To add `ValidationEditText` to your project, first make sure in root `build.grad
     }
 ```
 >***Note***: by creating new project in Android Studio it will have `jcenter` repository specified by default, so you will not need to add it manually.
-
 Once you make sure you have `jcenter` repository in your project, all you need to do is to add the following line in `dependencies` section of your project `build.gradle`.
- 
 See latest library version [ ![Download](https://api.bintray.com/packages/vitaliyptitsyn/maven/validationedittext/images/download.svg) ](https://bintray.com/vitaliyptitsyn/maven/validationedittext/_latestVersion)
 ```groovy
 implementation 'com.github.vitaliyptitsyn:validationedittext:X.X.X'
 ```
 
-## **Usage Sample**
-Usage of `PageIndicatorView` is quite simple. Just like regular data binding events.
+## **Usage description**
+Usage of `ValidationEditText` is quite simple. Just like regular data binding events. Need to bind LiveData that connect model with UI and provide validation rules.
+#### **binding**
+You can connect with ui in 2 ways: by `VET_validation_result` or `VET_validation_text`.
+In `VET_validation_text` you will have text from the view, and just user error will be shown.
+In `VET_validation_result` yo have to bind `ValidateResult` in you live data. And 
+`app:VET_validation_result="@={vm.liveName}` at layout. 
+```kotlin
+data class ValidateResult(
+    val originalText: String, //Text that provides to View   app:VET_validation_result="@={vm.liveName}"
+    val errorText: String? = null, //Text that shown on  the view. Or Will show if send to View not null
+    val isValid: Boolean = false
+)
+
+```
+#### **rules**
+There is 2 ways to provide rules: 
+    To provide the list `VET_validationRules` that accepts `List<ValidationRule>` (List of validator may dynamic)
+    Or Use list attributes for common validator. You can combine them in any way. (Validators from the xml)
+    
+    sample
 ```xml
-     <data>
+        <data>
             <import type="com.pvitaliy.validationtext.rules.ContentValidation" />
         </data>
 
         <com.google.android.material.textfield.TextInputEditText
-                  android:id="@+id/et_name"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:drawableStart="@drawable/ic_person"
-                  android:imeOptions="actionNext"
-                  android:inputType="textPersonName"
+                        <!--    ...     -->
                   app:VET_show_error_mode="@{vm.liveShowOnEdit}"
                   app:VET_validation_content="@{ContentValidation.NOT_EMPTY}"
                   app:VET_validation_result="@={vm.liveName}"
                   tools:text="18,6" />
 ```
-In binding `bm.liveName` live data with `ValidateResult` class 
+Validator text:
+Name|Behavior
+----|-------------- 
+`VET_validation_content`|Take `ContentValidation` field Email or NotEmpty.
+`VET_validation_length_min VET_validation_length_max` (may accept only one)| Validate min and max Length
+`VET_validation_rule`| Take 1 custom rule
+`VET_validate_equal` (optional)`VET_validate_equal_on_both`| Take another View, to compare text equality. If `VET_validate_equal_on_both=@{true}` error will delivered to both views.
 
-```kotlin
-data class ValidateResult(
-    val originalText: String,
-    val validatedText: String = "", // empty if text is invalid 
-    val isValid: Boolean = false
-)
-```
-To send text to validation exit text need to predefined "originalText" in ValidateResult classes instants, in you default Vm.
-
-In case when you want to use just text, you need use "VET_validation_text"  instead of "VET_validation_result"
-
-Also "VET_show_error_mode" used to control when to show validated text
+## **Error showing**
+You can customize error showing on user view. By choose one ErrorMode. Also you can dynamically change error mode.
+For example. when user clicked on Sing up validate email, and change validation to `ErrorMode.Once` tat will imidiatly triger validation, and change validation mode to `nextMode` from the validator (see the example)
 
 Name| Behavior
----- | -------------- 
+---- | --------------------------- 
 `ErrorMode.None`| Do not show error reason on edit Text.
 `ErrorMode.OnUserInput`| Show only on user focused view and typing.
 `ErrorMode.Always`| always validate result (Event if you send value in runtime).
@@ -64,6 +74,7 @@ To make you own validation Rule need to implement `ValidationRule` and in valida
 Than ValidationConvector handle the error and show on the `EditText`.
 ValidationException  has 3 child classes.  
 In custom validation rules, moust useful thor ResException or StringException
+
 ```kotlin
 open class ErrorCodeException(
     open val errorCode: Int,
@@ -78,22 +89,10 @@ open class ResException(
 ) : ValidationException()
 ```
  To override error message.  Provide custom `ValidationConvector` by "VET_validation_converter"
- #### **Rules**
-To provide rules to validator, you  can use   "VET_validationRules"  ( to provide list of rules) or use some of default rules 
-
- 
-Name| Behavior
----- | -------------- 
-`VET_validation_content`|Validate Email or Not Empty
-`VET_validation_length_min VET_validation_length_max`| Validate min and max Length
-`VET_validation_rule`| provide TextView to compare text
-
-
 
 ### **License**
-
     Copyright 2019 Vitaliy Ptitsyn
-    
+   
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
