@@ -3,6 +3,7 @@ package com.pvitaliy.validationtext
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
+import com.google.android.material.textfield.TextInputLayout
 import com.pvitaliy.validationedittext.ErrorMode
 import com.pvitaliy.validationedittext.mapper.ValidationConvector
 import com.pvitaliy.validationtext.rules.ValidationRule
@@ -47,8 +48,9 @@ class TextValidator(
         }
     }
 
-    fun validateInput(editText: EditText, showError: Boolean = false) {
-        editText.error = null
+    fun validateInput(editText: EditText, shouldShowError: Boolean = false) {
+        hideError()
+        var errorText: String? = null
         val resources = editText.context.resources
         val text = editText.text.toString()
         var isValidText = true
@@ -58,18 +60,39 @@ class TextValidator(
                 rule.validate(text, editText.resources)
             } catch (e: ValidationException) {
                 isValidText = false
-                if (!showError) return@forEach
-
-                editText.error = validationConvector.convertError(resources, e)
+                errorText = validationConvector.convertError(resources, e)
             }
         }
+
+        showErrorOnView(errorText, shouldShowError)
+
 
         if (errorMode is ErrorMode.Once) {
             errorMode = (errorMode as ErrorMode.Once).nextMode
         }
 
-        validationResult = ValidateResult(text, if (isValidText) text else "", isValidText)
+        validationResult = ValidateResult(text, errorText, isValidText)
         callback?.onValidation(validationResult)
+    }
+
+    private fun showErrorOnView(errorText: String?, shouldShowError: Boolean) =
+        editTextWeek.get()?.let { editText ->
+            if (!shouldShowError) return@let
+
+            if (editText.parent?.parent is TextInputLayout && (editText.parent?.parent as TextInputLayout).isErrorEnabled) {
+                (editText.parent?.parent as TextInputLayout).error = errorText
+            } else {
+                editText.error = errorText
+            }
+        }
+
+
+    private fun hideError() = editTextWeek.get()?.let { editText ->
+        if (editText.parent?.parent is TextInputLayout && (editText.parent?.parent as TextInputLayout).isErrorEnabled) {
+            (editText.parent?.parent as TextInputLayout).error = null
+        } else {
+            editText.error = null
+        }
     }
 
     override fun afterTextChanged(s: Editable) {

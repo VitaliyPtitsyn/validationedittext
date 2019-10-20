@@ -59,6 +59,7 @@ dependencies {
     implementation deps.support.core
     implementation deps.support.app_compat
     implementation deps.support.constraintlayout
+    implementation deps.google.material
 
     implementation deps.jetpack.lifecycle
     implementation deps.jetpack.viewmodel

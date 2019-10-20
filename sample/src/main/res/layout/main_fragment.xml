@@ -63,7 +63,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:hint="@string/auth_hint_email">
+                android:hint="@string/auth_hint_email"
+                app:errorEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_count"
@@ -86,14 +87,16 @@
                 android:id="@+id/til_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent">
+                android:background="@android:color/transparent"
+                android:hint="@string/auth_hint_password"
+
+                app:errorEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_lock"
-                    android:hint="@string/auth_hint_password"
                     android:imeOptions="actionDone"
                     android:inputType="textPassword"
                     app:VET_show_error_mode="@{vm.liveShowOnEdit}"
@@ -111,14 +114,15 @@
                 android:id="@+id/til_password_repeat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent">
+                android:background="@android:color/transparent"
+                android:hint="@string/auth_hint_password_repeat"
+                app:errorEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_password_repeat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_lock"
-                    android:hint="@string/auth_hint_password_repeat"
                     android:imeOptions="actionDone"
                     android:inputType="textPassword"
                     app:VET_show_error_mode="@{vm.liveShowOnEdit}"
@@ -135,7 +139,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:hint="@string/auth_hint_phone">
+                android:hint="@string/auth_hint_phone"
+                app:errorEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_phone"
