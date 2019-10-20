@@ -35,12 +35,12 @@ class TextValidator(
         rules.addAll(validationRules)
     }
 
-    fun validateInput() {
+    fun validateInput(ignoreFocus: Boolean = false) {
         editTextWeek.get()?.let { edit ->
             validateInput(
                 edit, when (errorMode) {
                     ErrorMode.None -> false
-                    ErrorMode.OnUserInput -> edit.hasFocus()
+                    ErrorMode.OnUserInput -> edit.hasFocus() || ignoreFocus
                     ErrorMode.Always -> true
                     is ErrorMode.Once -> true
                 }

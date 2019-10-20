@@ -25,7 +25,7 @@ fun EditText.setValidation(
     convector: ValidationConvector?,
     rules: List<ValidationRule>?
 ) {
-        setValidator(convector ?: ValidationConvectorDefault(), rules, validateResult)
+    setValidator(convector ?: ValidationConvectorDefault(), rules, validateResult)
 
 }
 
@@ -38,11 +38,11 @@ fun EditText.setValidation(
     convector: ValidationConvector?,
     rules: List<ValidationRule>?
 ) {
-        setValidator(
-            convector ?: ValidationConvectorDefault(),
-            rules,
-            ValidateResult(text ?: "")
-        )
+    setValidator(
+        convector ?: ValidationConvectorDefault(),
+        rules,
+        ValidateResult(text ?: "")
+    )
 
 }
 
@@ -91,7 +91,10 @@ fun EditText.setMode(mode: ErrorModeConstant) {
     validator.validateInput()
 }
 
-@BindingAdapter(value = ["VET_validation_length_min", "VET_validation_length_max"], requireAll = false)
+@BindingAdapter(
+    value = ["VET_validation_length_min", "VET_validation_length_max"],
+    requireAll = false
+)
 fun EditText.setValidtionLength(min: Int?, max: Int?) {
     val validator = getOrCreateValidator()
     validator.putRule(ValidationLengthRule(min, max))
@@ -115,18 +118,20 @@ fun EditText.setCustomRule(rule: ValidationRule) {
     validator.validateInput()
 }
 
-@BindingAdapter("VET_validate_equal")
-fun EditText.setValidateEqual(view: TextView) {
+@BindingAdapter(
+    value = ["VET_validate_equal", "VET_validate_equal_on_both"],
+    requireAll = false
+)
+fun EditText.setValidateEqual(view: TextView, showErrorOnBoth: Boolean = false) {
     val validator = getOrCreateValidator()
     validator.putRule(ValidationEqualRule(view))
     if (view is EditText) {
         view.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                validator.validateInput()
+                validator.validateInput(showErrorOnBoth)
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
     }
