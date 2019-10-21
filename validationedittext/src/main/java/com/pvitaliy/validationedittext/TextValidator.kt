@@ -5,14 +5,14 @@ import android.text.TextWatcher
 import android.widget.EditText
 import com.google.android.material.textfield.TextInputLayout
 import com.pvitaliy.validationedittext.ErrorMode
-import com.pvitaliy.validationedittext.mapper.ValidationConvector
+import com.pvitaliy.validationedittext.mapper.ValidationConverter
 import com.pvitaliy.validationtext.rules.ValidationRule
 import java.lang.ref.WeakReference
 import java.util.concurrent.CopyOnWriteArraySet
 
 class TextValidator(
     editText: EditText,
-    var validationConvector: ValidationConvector,
+    var validationConverter: ValidationConverter,
     mode: ErrorMode = ErrorMode.None
 ) : TextWatcher {
 
@@ -60,7 +60,8 @@ class TextValidator(
                 rule.validate(text, editText.resources)
             } catch (e: ValidationException) {
                 isValidText = false
-                errorText = validationConvector.convertError(resources, e)
+                errorText = validationConverter.convertError(resources, e)
+                return@forEach
             }
         }
 

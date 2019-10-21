@@ -71,7 +71,7 @@ Name| Behavior
 
 #### **Customize error  and message**
 To make you own validation Rule, implement `ValidationRule` and throw `ValidationException` in validate func when the validation failed.
-Then `ValidationConvector` handles the error and shows it on the `EditText`.
+Then `ValidationConverter` handles the error and shows it on the `EditText`.
 ValidationException  has 3 child classes.  
 In custom validation rules, the handiest way is to throw `ResException` or `StringException`
 

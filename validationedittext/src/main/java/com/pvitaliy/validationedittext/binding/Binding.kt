@@ -10,8 +10,8 @@ import androidx.databinding.InverseBindingListener
 import com.pvitaliy.validationedittext.ErrorMode
 import com.pvitaliy.validationedittext.ErrorModeConstant
 import com.pvitaliy.validationedittext.R
-import com.pvitaliy.validationedittext.mapper.ValidationConvector
-import com.pvitaliy.validationedittext.mapper.ValidationConvectorDefault
+import com.pvitaliy.validationedittext.mapper.ValidationConverter
+import com.pvitaliy.validationedittext.mapper.ValidationConverterDefault
 import com.pvitaliy.validationtext.OnValidation
 import com.pvitaliy.validationtext.ValidateResult
 import com.pvitaliy.validationtext.rules.*
@@ -22,10 +22,10 @@ import com.pvitaliy.validationtext.rules.*
 )
 fun EditText.setValidation(
     validateResult: ValidateResult?,
-    convector: ValidationConvector?,
+    converter: ValidationConverter?,
     rules: List<ValidationRule>?
 ) {
-    setValidator(convector ?: ValidationConvectorDefault(), rules, validateResult)
+    setValidator(converter ?: ValidationConverterDefault(), rules, validateResult)
 
 }
 
@@ -35,11 +35,11 @@ fun EditText.setValidation(
 )
 fun EditText.setValidation(
     text: String?,
-    convector: ValidationConvector?,
+    converter: ValidationConverter?,
     rules: List<ValidationRule>?
 ) {
     setValidator(
-        convector ?: ValidationConvectorDefault(),
+        converter ?: ValidationConverterDefault(),
         rules,
         ValidateResult(text ?: "")
     )

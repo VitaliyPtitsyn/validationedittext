@@ -16,7 +16,7 @@ import com.pvitaliy.validationtext.ValidationException
 /**
  * Convert erorr
  */
-open class ValidationConvectorDefault : ValidationConvector {
+open class ValidationConverterDefault : ValidationConverter {
 
 
     /**
@@ -49,7 +49,7 @@ open class ValidationConvectorDefault : ValidationConvector {
 
     protected fun getFromMap(resources: Resources, errorCode: Int, vararg args: Any?): String {
         if (!codeMap.containsKey(errorCode))
-            throw RuntimeException("Error code $errorCode has been forgotten to the codeMap")
+            throw RuntimeException("Error code $errorCode has been forgotten to add to the codeMap")
         return resources.getString(codeMap[errorCode]!!, *args)
     }
 }

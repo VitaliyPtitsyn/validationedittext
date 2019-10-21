@@ -3,7 +3,7 @@ package com.pvitaliy.validationedittext.mapper
 import android.content.res.Resources
 import com.pvitaliy.validationtext.ValidationException
 
-interface ValidationConvector {
+interface ValidationConverter {
 
     fun convertError(resources: Resources, exc: ValidationException): String
 }
