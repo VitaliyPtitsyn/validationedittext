@@ -2,7 +2,7 @@
 This is a simple library that facilitates text validation and error handling in a user-friendly way
 on EditText with (TextInputLayout support).
 For MVVM + data binding stack
-
+![](promo.gif)
 ## **Integration**
 To add `ValidationEditText` to your project, first make sure in root `build.gradle` you have specified the following repository:
 ```groovy
