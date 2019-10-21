@@ -50,8 +50,9 @@ There are 2 ways to provide rules:
                   tools:text="18,6" />
 ```
 Validator text:
-Name|Behavior
-----|-------------- 
+
+Name| Behavior
+---- | ---------------------------
 `VET_validation_content`|Take `ContentValidation` field Email or NotEmpty.
 `VET_validation_length_min VET_validation_length_max` (may accept only one)| Validate min and max Length
 `VET_validation_rule`| Take 1 custom rule
