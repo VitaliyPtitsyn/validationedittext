@@ -5,7 +5,7 @@ import com.pvitaliy.validationedittext.R
 import com.pvitaliy.validationedittext.rules.ErrorCodes.ERROR_CODE_EMAIL_FORMAT
 import com.pvitaliy.validationedittext.rules.ErrorCodes.ERROR_CODE_EMPTY
 import com.pvitaliy.validationedittext.rules.ErrorCodes.ERROR_CODE_SGW
-import com.pvitaliy.validationedittext.rules.ErrorCodes.ERROR_CODE_TEXT_EQUYLITY
+import com.pvitaliy.validationedittext.rules.ErrorCodes.ERROR_CODE_TEXT_EQUALITY
 import com.pvitaliy.validationedittext.rules.ErrorCodes.ERROR_CODE_TEXT_MAX
 import com.pvitaliy.validationedittext.rules.ErrorCodes.ERROR_CODE_TEXT_MIN
 import com.pvitaliy.validationtext.ErrorCodeException
@@ -30,7 +30,7 @@ open class ValidationConverterDefault : ValidationConverter {
         codeMap[ERROR_CODE_SGW] = R.string.VET_invalid_input
         codeMap[ERROR_CODE_EMPTY] = R.string.VET_cant_be_empty
         codeMap[ERROR_CODE_EMAIL_FORMAT] = R.string.VET_wrong_email_format
-        codeMap[ERROR_CODE_TEXT_EQUYLITY] = R.string.VET_not_equal_text
+        codeMap[ERROR_CODE_TEXT_EQUALITY] = R.string.VET_not_equal_text
         codeMap[ERROR_CODE_TEXT_MIN] = R.string.VET_wrong_min_format
         codeMap[ERROR_CODE_TEXT_MAX] = R.string.VET_wrong_max_format
     }

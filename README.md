@@ -1,17 +1,18 @@
-## **ValidationEditText**[ ![Download](https://api.bintray.com/packages/vitaliyptitsyn/maven/validationedittext/images/download.svg) ](https://bintray.com/vitaliyptitsyn/maven/validationedittext/_latestVersion)
+## **ValidationEditText**[ ![Download](https://api.bintray.com/packages/vitaliyptitsyn/maven/validationedittext/images/download.svg) ](https://bintray.com/vitaliyptitsyn/maven/validationedittext/_latestVersion)[![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-ValidationEditText-green.svg?style=flat )]( https://android-arsenal.com/details/1/7936 )
+
 This is a simple library that facilitates text validation and error handling in a user-friendly way
 on EditText with (TextInputLayout support).
 For MVVM + data binding stack
 ![](promo.gif)
 ## **Integration**
-To add `ValidationEditText` to your project, first make sure in root `build.gradle` you have specified the following repository:
+To add `ValidationEditText` to your project, first make sure that in root `build.gradle` you have specified the following repository:
 ```groovy
     repositories {
         jcenter()
     }
 ```
 >***Note***: by creating a new project in Android Studio there will be `jcenter` repository specified by default, so you do not need add it manually.
-Once you make sure you have `jcenter` repository in your project, all you need to do is to add the following line in `dependencies` section of your project `build.gradle`.
+Once you make sure that you have `jcenter` repository in your project, all you need to do is to add the following line in `dependencies` section of your project `build.gradle`.
 See the latest library version [ ![Download](https://api.bintray.com/packages/vitaliyptitsyn/maven/validationedittext/images/download.svg) ](https://bintray.com/vitaliyptitsyn/maven/validationedittext/_latestVersion)
 ```groovy
 implementation 'com.github.vitaliyptitsyn:validationedittext:X.X.X'

@@ -3,7 +3,7 @@ package com.pvitaliy.validationtext.rules
 import android.content.res.Resources
 import android.text.TextUtils
 import android.widget.TextView
-import com.pvitaliy.validationedittext.rules.ErrorCodes.ERROR_CODE_TEXT_EQUYLITY
+import com.pvitaliy.validationedittext.rules.ErrorCodes.ERROR_CODE_TEXT_EQUALITY
 import com.pvitaliy.validationtext.ErrorCodeException
 
 class ValidationEqualRule(private val view: TextView) : ValidationRule {
@@ -17,4 +17,4 @@ class ValidationEqualRule(private val view: TextView) : ValidationRule {
     override fun hashCode(): Int = javaClass.hashCode()
 }
 
-class EqualException : ErrorCodeException(ERROR_CODE_TEXT_EQUYLITY)
+class EqualException : ErrorCodeException(ERROR_CODE_TEXT_EQUALITY)
